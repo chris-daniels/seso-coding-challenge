@@ -4,6 +4,10 @@ const MinHeap = require("heap-js");
 
 // Print all entries, across all of the *async* sources, in chronological order.
 
+// NOTE: This solution uses a min heap to maintain the next log entry from each source in chronological order.
+// Given more time, we could consider holding an entire batch of logs in memory and fetching each log in the batch in parallel.
+// This would reduce the amount of time we spend waiting around for popAsync to resolve. 
+
 module.exports = (logSources, printer) => {
   return new Promise((resolve, reject) => {
     // Maintain a min heap of the log entries. Each entry contains a log source and the latest log entry from that source. 
